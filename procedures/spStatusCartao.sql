@@ -1,5 +1,5 @@
 drop procedure if exists spStatusCartao;
-DELIMITER $$ 
+DELIMITER $$  
 
 create procedure spStatusCartao(
     pidCliente int,

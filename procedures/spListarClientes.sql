@@ -1,5 +1,5 @@
 drop procedure if exists spListarClientes;
-DELIMITER $$ 
+DELIMITER $$  
 
 create procedure spListarClientes(
     pnome varchar (255)

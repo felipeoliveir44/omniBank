@@ -1,5 +1,5 @@
 drop procedure if exists spListarCartoes;
-DELIMITER $$ 
+DELIMITER $$  
 
 create procedure spListarCartoes(
     pcpf varchar (255)

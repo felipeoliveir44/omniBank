@@ -1,4 +1,4 @@
-create database omnibank;
+create database omnibank; 
 
 use omnibank;
 

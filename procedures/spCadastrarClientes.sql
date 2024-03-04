@@ -1,5 +1,5 @@
 drop procedure if exists spCadastrarCliente;
-DELIMITER $$ 
+DELIMITER $$  
 
 create procedure spCadastrarCliente(
 pnome varchar (255),

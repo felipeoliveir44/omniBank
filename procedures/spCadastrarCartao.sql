@@ -1,5 +1,5 @@
-drop procedure if exists spCadastrarCartao;
-DELIMITER $$ 
+drop procedure if exists spCadastrarCartao; 
+DELIMITER $$  
 
 create procedure spCadastrarCartao(
     pidCliente int,
