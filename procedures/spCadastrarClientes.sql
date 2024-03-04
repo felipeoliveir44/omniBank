@@ -1,3 +1,4 @@
+drop procedure if exists spCadastrarCliente;
 DELIMITER $$ 
 
 create procedure spCadastrarCliente(
@@ -8,7 +9,7 @@ ptelefone varchar (20))
 
 BEGIN -- Início
 
-insert into tbclientes (nome, cpf, email, telefone) values (pnome, pcpf, pemail, ptelefone);
+insert into tbcliente (nome, cpf, email, telefone) values (pnome, pcpf, pemail, ptelefone);
 END $$
 
 DELIMITER ;

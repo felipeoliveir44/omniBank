@@ -2,22 +2,39 @@ create database omnibank;
 
 use omnibank;
 
-create table tbclientes(
-id bigint PRIMARY KEY auto_increment, nome varchar (255), 
-cpf char(11),
+create table tbcliente (
+id int auto_increment primary key,
+nome varchar (255),
+cpf char(11) unique,
 email varchar (255),
-telefone varchar (20));
+telefone char (11)
+);
 
-CREATE TABLE tbcartao (
-numero CHAR(16) primary key,
-validade DATE,
-cvv CHAR(3),
+create table tbcartao (
+id int auto_increment primary key,
+numero char(16) unique,
+validade varchar(7),
+cvv char(3),
 limite DECIMAL(10, 2),
-status ENUM('ATIVO', 'CANCELADO'));
-    
-create table tbcompra (
-valor DECIMAL(10, 2),
-dataCompra date,
-estabelecimento varchar (255),
-categoria varchar (255));
+statusCartao varchar (9),
+id_cliente int,
+FOREIGN KEY (id_cliente) REFERENCES tbcliente(id)
+);
+
+CREATE TABLE tbcategoria (
+    id INT PRIMARY KEY,
+    nome VARCHAR(50)
+);
+
+CREATE TABLE tbcompra (
+    ID INT PRIMARY KEY,
+    valor DECIMAL(10, 2),
+    dataCompra DATETIME,
+    estabelecimento VARCHAR(100),
+    categoria VARCHAR(50),
+    id_cartao int,
+    id_categoria INT,
+    FOREIGN KEY (id_cartao) REFERENCES tbcartao(id),
+    FOREIGN KEY (id_categoria) REFERENCES tbcategoria(id)
+);
 

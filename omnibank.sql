@@ -23,12 +23,17 @@ DROP TABLE IF EXISTS `tbcartao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbcartao` (
-  `numero` char(16) NOT NULL,
-  `validade` date DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `numero` char(16) DEFAULT NULL,
+  `validade` varchar(7) DEFAULT NULL,
   `cvv` char(3) DEFAULT NULL,
   `limite` decimal(10,2) DEFAULT NULL,
-  `status` enum('ATIVO','CANCELADO') DEFAULT NULL,
-  PRIMARY KEY (`numero`)
+  `statusCartao` varchar(9) DEFAULT NULL,
+  `id_cliente` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `numero` (`numero`),
+  KEY `id_cliente` (`id_cliente`),
+  CONSTRAINT `tbcartao_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `tbcliente` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -42,30 +47,53 @@ LOCK TABLES `tbcartao` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbclientes`
+-- Table structure for table `tbcategoria`
 --
 
-DROP TABLE IF EXISTS `tbclientes`;
+DROP TABLE IF EXISTS `tbcategoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbclientes` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) DEFAULT NULL,
-  `cpf` char(11) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `telefone` varchar(20) DEFAULT NULL,
+CREATE TABLE `tbcategoria` (
+  `id` int NOT NULL,
+  `nome` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbclientes`
+-- Dumping data for table `tbcategoria`
 --
 
-LOCK TABLES `tbclientes` WRITE;
-/*!40000 ALTER TABLE `tbclientes` DISABLE KEYS */;
-INSERT INTO `tbclientes` VALUES (1,'Luiz Felipe','49564418860','felipe@gmail.com','19989346614');
-/*!40000 ALTER TABLE `tbclientes` ENABLE KEYS */;
+LOCK TABLES `tbcategoria` WRITE;
+/*!40000 ALTER TABLE `tbcategoria` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbcategoria` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbcliente`
+--
+
+DROP TABLE IF EXISTS `tbcliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tbcliente` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) DEFAULT NULL,
+  `cpf` char(11) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `telefone` char(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cpf` (`cpf`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbcliente`
+--
+
+LOCK TABLES `tbcliente` WRITE;
+/*!40000 ALTER TABLE `tbcliente` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbcliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -76,10 +104,18 @@ DROP TABLE IF EXISTS `tbcompra`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbcompra` (
+  `ID` int NOT NULL,
   `valor` decimal(10,2) DEFAULT NULL,
-  `dataCompra` date DEFAULT NULL,
-  `estabelecimento` varchar(255) DEFAULT NULL,
-  `categoria` varchar(255) DEFAULT NULL
+  `dataCompra` datetime DEFAULT NULL,
+  `estabelecimento` varchar(100) DEFAULT NULL,
+  `categoria` varchar(50) DEFAULT NULL,
+  `id_cartao` int DEFAULT NULL,
+  `id_categoria` int DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `id_cartao` (`id_cartao`),
+  KEY `id_categoria` (`id_categoria`),
+  CONSTRAINT `tbcompra_ibfk_1` FOREIGN KEY (`id_cartao`) REFERENCES `tbcartao` (`id`),
+  CONSTRAINT `tbcompra_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `tbcategoria` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -101,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-29  0:38:45
+-- Dump completed on 2024-03-04  0:28:07
