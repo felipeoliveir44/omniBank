@@ -10,14 +10,14 @@ public class ClienteService {
     private Cliente cliente;
     private ConnectionFactory connectionFactory;
 
-    public ClienteService(String nome, String cpf, String email, String telefone) {
+    public ClienteService() {
         this.connectionFactory = new ConnectionFactory();
-        this.cliente = new Cliente(nome, cpf, email, telefone);
     }
 
-    public void cadastrarClienteService(Cliente cliente) {
+    public void cadastrarClienteService(String nome, String cpf, String email, String telefone) {
         ClienteDao clienteDao = new ClienteDao(connectionFactory.abrirConexaoBD());
-        clienteDao.cadastrarCliente(this.cliente);
+        clienteDao.cadastrarCliente(new Cliente(nome, cpf, email, telefone));
 
     }
+
 }

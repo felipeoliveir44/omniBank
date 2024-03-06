@@ -1,38 +1,32 @@
 package br.com.omnibank.dao;
 
 import br.com.omnibank.factory.ConnectionFactory;
-import br.com.omnibank.model.Cliente;
 
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
-public class ClienteDao {
+public class CartaoDao {
     ConnectionFactory connectionFactory;
 
-    public ClienteDao(Connection con) {
+    public CartaoDao(Connection conn) {
         this.connectionFactory = new ConnectionFactory();
     }
 
-    public void cadastrarCliente(Cliente cliente) {
+    public void cadastrarCartao(int idCliente, BigDecimal limite) {
+
         connectionFactory.abrirConexaoBD();
 
-        String sql = "{call spCadastrarCliente(?, ?, ?, ?)}";
+        String sql = "{call spCadastrarCartao(?, ?)}";
 
         try {
             // Criamos a variavel de conexao que irá receber a classe de abrir conexao com banco de dados
             Connection con = connectionFactory.abrirConexaoBD();
             // Prepara para enviar a query
             CallableStatement cs = con.prepareCall(sql);
-            cs.setString(1, cliente.getNome());
-            cs.setString(2, cliente.getCpf());
-            cs.setString(3, cliente.getEmail());
-            cs.setString(4, cliente.getTelefone());
+            cs.setInt(1, idCliente);
+            cs.setBigDecimal(2, limite);
             cs.execute();
             cs.close();
             con.close();
@@ -41,6 +35,4 @@ public class ClienteDao {
             throw new RuntimeException("Erro: " + e.getMessage());
         }
     }
-
-
 }

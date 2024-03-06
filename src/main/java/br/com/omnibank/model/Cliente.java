@@ -57,6 +57,7 @@ public class Cliente {
     @Override
     public String toString() {
         return "Dados do cliente: \n" +
+                "ID: " + id + "\n" +
                 "Nome: " + nome + "\n" +
                 "CPF: " + cpf + "\n" +
                 "Email: " + email + "\n" +
