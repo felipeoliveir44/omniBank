@@ -19,4 +19,9 @@ public class CartaoService {
         CartaoDao cartaoDao = new CartaoDao(connectionFactory.abrirConexaoBD());
         cartaoDao.cadastrarCartao(idCliente, limite);
     }
+
+    public void alterarStatusCartao(int idCliente, int idCartao, String statusCartao) {
+        CartaoDao cartaoDao = new CartaoDao(connectionFactory.abrirConexaoBD());
+        cartaoDao.alterarStatusCartao(idCliente, idCartao, statusCartao);
+    }
 }

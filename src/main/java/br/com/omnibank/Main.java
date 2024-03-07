@@ -21,7 +21,7 @@ public class Main {
                 Qual função gostaria de realizar:
                 1 - Criar cliente
                 2 - Cadastrar cartão
-                
+                3 - Alterar status do cartão
                 """);
             int option = scanner.nextInt();
 
@@ -31,6 +31,9 @@ public class Main {
                     break;
                 case 2:
                     cadastrarCartao();
+                    break;
+                case 3:
+                    alterarStatusCartao();
                     break;
             }
 
@@ -55,5 +58,16 @@ public class Main {
         System.out.println("Digite o limite desejado");
         BigDecimal clienteLimite = scanner.nextBigDecimal();
         cartaoService.cadastrarCartao(clienteId, clienteLimite);
+    }
+
+    private static void alterarStatusCartao() {
+        System.out.println("Digite o ID do cliente");
+        int clienteId = scanner.nextInt();
+        System.out.println("Digite o ID do cartão");
+        int cartaoId = scanner.nextInt();
+        System.out.println("Digite o status desejado");
+        String statusCartao = scanner.next();
+
+        cartaoService.alterarStatusCartao(clienteId, cartaoId, statusCartao);
     }
 }
