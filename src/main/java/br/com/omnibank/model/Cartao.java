@@ -5,12 +5,23 @@ import java.math.BigDecimal;
 public class Cartao {
     private int id;
     private String numero;
+    private String nomeCliente;
     private String validade;
     private String cvv;
     private BigDecimal limite;
     private String statusCartao;
     private Cliente cliente;
 
+    public Cartao(String numero, String nomeCliente, String validade, BigDecimal limite) {
+        this.numero = numero;
+        this.nomeCliente = nomeCliente;
+        this.validade = validade;
+        this.limite = limite;
+    }
+
+    public Cartao() {
+
+    }
     public int getId() {
         return id;
     }
@@ -69,14 +80,11 @@ public class Cartao {
 
     @Override
     public String toString() {
-        return "Cartao{" +
-                "id=" + id +
-                ", numero='" + numero + '\'' +
-                ", validade='" + validade + '\'' +
-                ", cvv='" + cvv + '\'' +
-                ", limite=" + limite +
-                ", statusCartao='" + statusCartao + '\'' +
-                ", cliente=" + cliente +
-                '}';
+        return "Dados do cartão \n" +
+                "Número: " + numero + '\n' +
+                "Cliente: " + nomeCliente + "\n" +
+                "Limite: " + limite + '\n' +
+                "Validade: " + validade + '\n' +
+                "-------------------";
     }
 }
