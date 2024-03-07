@@ -25,5 +25,8 @@ public class CartaoService {
     public List<Cartao> listarCartoesPorCliente(String p) {
         CartaoDao cartaoDao = new CartaoDao(connectionFactory.abrirConexaoBD());
         return cartaoDao.listarCartoesPorCliente(p);
+    public void alterarStatusCartao(int idCliente, int idCartao, String statusCartao) {
+        CartaoDao cartaoDao = new CartaoDao(connectionFactory.abrirConexaoBD());
+        cartaoDao.alterarStatusCartao(idCliente, idCartao, statusCartao);
     }
 }

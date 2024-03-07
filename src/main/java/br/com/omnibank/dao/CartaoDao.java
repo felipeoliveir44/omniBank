@@ -66,4 +66,26 @@ public class CartaoDao {
         return cartoes;
     }
 
+    public void alterarStatusCartao(int idCliente, int idCartao, String statusCartao) {
+        connectionFactory.abrirConexaoBD();
+
+        String sql = "{call spStatusCartao(?, ?, ?)}";
+
+        try {
+            Connection con = connectionFactory.abrirConexaoBD();
+
+            CallableStatement callableStatement = con.prepareCall(sql);
+            callableStatement.setInt(1, idCliente);
+            callableStatement.setInt(2, idCartao);
+            callableStatement.setString(3, statusCartao);
+            callableStatement.execute();
+            callableStatement.close();
+            con.close();
+
+        }
+        catch(SQLException e) {
+            throw new RuntimeException("Erro: " + e.getMessage());
+        }
+
+    }
 }

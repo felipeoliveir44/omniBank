@@ -24,6 +24,7 @@ public class Main {
                 1 - Criar cliente
                 2 - Cadastrar cartão
                 3 - Listar cartões
+                4 - Alterar status do cartão
                 """);
             int option = scanner.nextInt();
 
@@ -37,6 +38,10 @@ public class Main {
                 case 3:
                     listagemDeCartao();
                     break;
+                case 4:
+                    alterarStatusCartao();
+                    break;
+                    
             }
 
     }
@@ -69,4 +74,14 @@ public class Main {
         cartaoList.stream().forEach(System.out::println);
     }
 
+    private static void alterarStatusCartao() {
+        System.out.println("Digite o ID do cliente");
+        int clienteId = scanner.nextInt();
+        System.out.println("Digite o ID do cartão");
+        int cartaoId = scanner.nextInt();
+        System.out.println("Digite o status desejado");
+        String statusCartao = scanner.next();
+
+        cartaoService.alterarStatusCartao(clienteId, cartaoId, statusCartao);
+    }
 }
