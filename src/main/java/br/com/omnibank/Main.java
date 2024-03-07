@@ -23,7 +23,7 @@ public class Main {
                 Qual função gostaria de realizar:
                 1 - Criar cliente
                 2 - Cadastrar cartão
-                                
+                3 - Listar cartões                
                 """);
         int option = scanner.nextInt();
 
@@ -33,6 +33,7 @@ public class Main {
                 break;
             case 2:
                 cadastrarCartao();
+                break;
             case 3:
                 listagemDeCartao();
                 break;
@@ -63,22 +64,22 @@ public class Main {
     }
 
     private static void listagemDeCartao() {
-        System.out.println("Digite o ID do cliente para listar os cartões:");
-        int clienteId = scanner.nextInt();
-
+        System.out.println("Listagem de cartões: ");
         CartaoService cartaoService = new CartaoService();
+        var cartaoList = cartaoService.listarCartoesPorCliente("");
+        cartaoList.stream().forEach(System.out::println);
 
-        List<Cartao> cartoes = cartaoService.listarCartoesPorCliente(clienteId);
+        /*List<Cartao> cartoes = cartaoService.listarCartoesPorCliente(clienteCpf);
 
         if (cartoes.isEmpty()) {
-            System.out.println("Nenhum cartão encontrado para o cliente com ID " + clienteId);
+            System.out.println("Nenhum cartão encontrado para o cliente com ID " + clienteCpf);
         } else {
-            System.out.println("Lista de cartões para o cliente com ID " + clienteId + ":");
+            System.out.println("Lista de cartões para o cliente com ID " + clienteCpf + ":");
             for (Cartao cartao : cartoes) {
                 System.out.println("ID do Cartão: " + cartao.getId());
                 System.out.println("Limite do Cartão: " + cartao.getLimite());
                 System.out.println("------------------------");
             }
-        }
+        }*/
     }
 }

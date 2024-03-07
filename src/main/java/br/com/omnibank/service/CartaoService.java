@@ -19,8 +19,8 @@ public class CartaoService {
         cartaoDao.cadastrarCartao(idCliente, limite);
     }
 
-    public List<Cartao> listarCartoesPorCliente(int idCliente) {
+    public List<Cartao> listarCartoesPorCliente(String p) {
         CartaoDao cartaoDao = new CartaoDao(connectionFactory.abrirConexaoBD());
-        return cartaoDao.listarCartoesPorCliente(idCliente);
+        return cartaoDao.listarCartoesPorCliente(p);
     }
 }
