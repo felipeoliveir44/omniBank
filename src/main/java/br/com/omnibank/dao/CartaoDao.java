@@ -22,7 +22,6 @@ public class CartaoDao {
             con = connectionFactory.abrirConexaoBD();
             String sql = "{call spCadastrarCartao(?, ?)}";
 
-            // Prepara para enviar a query
             try (CallableStatement cs = con.prepareCall(sql)) {
                 cs.setInt(1, idCliente);
                 cs.setBigDecimal(2, limite);

@@ -25,9 +25,9 @@ public class ClienteDao {
         String sql = "{call spCadastrarCliente(?, ?, ?, ?)}";
 
         try {
-            // Criamos a variavel de conexao que irá receber a classe de abrir conexao com banco de dados
+
             Connection con = connectionFactory.abrirConexaoBD();
-            // Prepara para enviar a query
+
             CallableStatement cs = con.prepareCall(sql);
             cs.setString(1, cliente.getNome());
             cs.setString(2, cliente.getCpf());
