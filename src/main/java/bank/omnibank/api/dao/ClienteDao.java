@@ -13,6 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ClienteDao {
+
     ConnectionFactory connectionFactory;
 
     public ClienteDao(Connection con) {

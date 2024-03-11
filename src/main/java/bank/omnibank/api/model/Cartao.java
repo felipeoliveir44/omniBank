@@ -3,6 +3,7 @@ package bank.omnibank.api.model;
 import java.math.BigDecimal;
 
 public class Cartao {
+
     private int id;
     private String numero;
     private String validade;

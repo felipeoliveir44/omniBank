@@ -7,6 +7,7 @@ import bank.omnibank.api.model.Cliente;
 import java.util.List;
 
 public class ClienteService {
+
     private Cliente cliente;
     private ConnectionFactory connectionFactory;
 

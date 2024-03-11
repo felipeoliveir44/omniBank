@@ -1,4 +1,5 @@
 create table tbcliente (
+
 id bigint auto_increment primary key not null,
 nome varchar (255) not null,
 cpf char(11) unique not null,

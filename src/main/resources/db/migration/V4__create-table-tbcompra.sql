@@ -1,5 +1,6 @@
 
 CREATE TABLE tbcompra (
+
     id bigint PRIMARY KEY not null,
     valor DECIMAL(10, 2) not null,
     dataCompra DATETIME not null,

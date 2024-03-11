@@ -1,4 +1,5 @@
 create table tbcartao (
+
 id bigint auto_increment primary key not null,
 numero char(16) unique not null,
 validade varchar(7) not null,

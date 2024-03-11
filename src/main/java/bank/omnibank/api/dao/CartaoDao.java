@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class CartaoDao {
+
     ConnectionFactory connectionFactory;
 
     public CartaoDao(Connection conn) {
