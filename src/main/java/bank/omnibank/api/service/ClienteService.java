@@ -3,9 +3,11 @@ package bank.omnibank.api.service;
 import bank.omnibank.api.dao.ClienteDao;
 import bank.omnibank.api.factory.ConnectionFactory;
 import bank.omnibank.api.model.Cliente;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ClienteService {
 
     private Cliente cliente;
@@ -18,7 +20,6 @@ public class ClienteService {
     public void cadastrarClienteService(String nome, String cpf, String email, String telefone) {
         ClienteDao clienteDao = new ClienteDao(connectionFactory.abrirConexaoBD());
         clienteDao.cadastrarCliente(new Cliente(nome, cpf, email, telefone));
-
     }
 
 }

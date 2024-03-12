@@ -1,11 +1,26 @@
 package bank.omnibank.api.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+@Entity
+@Table(name = "tbcliente")
 public class Cliente {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Long id;
+    @NotBlank
+
     private String nome;
+    @NotBlank
     private String cpf;
+    @NotBlank
+    @Email
     private String email;
+    @NotBlank
     private String telefone;
 
     public Cliente(String nome, String cpf, String email, String telefone) {
@@ -15,12 +30,8 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {
