@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Cartao {
 
-    private int id;
+    private Long id;
     private String numero;
     private String validade;
     private String cvv;
@@ -12,13 +12,10 @@ public class Cartao {
     private String statusCartao;
     private Cliente cliente;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNumero() {
         return numero;

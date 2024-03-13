@@ -1,26 +1,54 @@
 package bank.omnibank.api.model;
 
+import bank.omnibank.api.dados.cliente.DadosAtualizacaoCliente;
+import bank.omnibank.api.dados.cliente.DadosCadastroCliente;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "tbcliente")
+@NoArgsConstructor
 public class Cliente {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Long id;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String cpf;
+    @NotBlank
+    @Email
     private String email;
+    @NotBlank
     private String telefone;
 
-    public Cliente(String nome, String cpf, String email, String telefone) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefone = telefone;
+    @NotNull
+    @Column(name = "status")
+    private boolean ativo;
+
+    public boolean isAtivo() {
+        return ativo;
     }
 
-    public int getId() {
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Cliente(DadosCadastroCliente dados) {
+        this.nome = dados.nome();
+        this.cpf = dados.cpf();
+        this.email = dados.email();
+        this.telefone = dados.telefone();
+        this.ativo = true;
+    }
+
+    public Long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -55,6 +83,25 @@ public class Cliente {
         this.telefone = telefone;
     }
 
+    public void atualizarInformacoes(DadosAtualizacaoCliente dados) {
+        if(dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+
+        if(dados.cpf() != null) {
+            this.cpf = dados.cpf();
+        }
+
+        if(dados.email() != null) {
+            this.email = dados.email();
+        }
+
+        if(dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+
+
+    }
     @Override
     public String toString() {
         return "Dados do cliente: \n" +
@@ -66,5 +113,13 @@ public class Cliente {
                 "--------------------";
 
 
+    }
+
+    public void excluir() {
+        this.ativo = false;
+    }
+
+    public void ativar() {
+        this.ativo = true;
     }
 }
