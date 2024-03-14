@@ -9,7 +9,7 @@ ptelefone varchar (20))
 
 BEGIN -- Início
 
-insert into tbcliente (nome, cpf, email, telefone) values (pnome, pcpf, pemail, ptelefone);
+insert into tbcliente (nome, cpf, email, telefone, status) values (pnome, pcpf, pemail, ptelefone, 1);
 END $$
 
 DELIMITER ;

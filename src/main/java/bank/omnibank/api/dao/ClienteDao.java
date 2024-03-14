@@ -31,8 +31,11 @@ public class ClienteDao {
     private ClienteRepository repository;
 
     public void cadastrarClientes(@RequestBody @Valid DadosCadastroCliente cliente) {
-        repository.save(new Cliente(cliente));
+        repository.spCadastrarCliente(cliente.nome(), cliente.cpf(), cliente.email(), cliente.telefone());
+        // repository.cadastrarClienteProcedure(cliente.nome(), cliente.cpf(), cliente.email(), cliente.telefone());
+        // repository.save(new Cliente(cliente));
     }
+
 
     public Page<DadosListagemCliente> listarClientes(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
         return repository.findAllByAtivoTrue(paginacao).map(DadosListagemCliente::new);
@@ -53,4 +56,6 @@ public class ClienteDao {
         var cliente = repository.getReferenceById(id);
         cliente.ativar();
     }
+
+
 }

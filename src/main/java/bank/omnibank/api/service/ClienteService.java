@@ -21,8 +21,7 @@ public class ClienteService {
     public void cadastrarCliente(DadosCadastroCliente cliente) {
 
         if(cliente == null) return;
-
-        clienteDao.cadastrarClientes(new DadosCadastroCliente(cliente));
+        clienteDao.cadastrarClientes(cliente);
     }
 
     public Page<DadosListagemCliente> listarClientes(Pageable paginacao) {
@@ -40,4 +39,6 @@ public class ClienteService {
     public void ativarCliente(@PathVariable Long id) {
         clienteDao.ativarCliente(id);
     }
+
+
 }
