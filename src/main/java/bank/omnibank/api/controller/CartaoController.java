@@ -29,12 +29,13 @@ public class CartaoController {
     public ResponseEntity<DadosCadastroCartao> cadastrarCartao(@RequestBody DadosCadastroCartao dados) {
         service.cadastrarCartao(dados);
         return ResponseEntity.ok(dados);
+
     }
 
     @GetMapping("/listar")
     @Transactional
    public Page<DadosListagemCartao> listarCartao(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
-        return service.listarClientes(paginacao);
+        return service.listarCartao(paginacao);
 
    }
 
@@ -51,5 +52,6 @@ public class CartaoController {
     public ResponseEntity<DadosAtualizacaoLimite> atualizarLimite(@RequestBody DadosAtualizacaoLimite dados){
         service.atualizarLimite(dados);
         return  ResponseEntity.ok(dados);
+
    }
 }

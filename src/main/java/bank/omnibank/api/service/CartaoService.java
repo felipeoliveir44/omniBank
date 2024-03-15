@@ -21,7 +21,7 @@ public class CartaoService {
         cartaoDao.cadastrarCartao(new DadosCadastroCartao(dados.id(), dados.limite()));
     }
 
-    public Page<DadosListagemCartao> listarClientes(Pageable paginacao) {
+    public Page<DadosListagemCartao> listarCartao(Pageable paginacao) {
         return cartaoDao.listarCartao(paginacao);
     }
 
