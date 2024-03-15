@@ -1,6 +1,7 @@
 package bank.omnibank.api.service;
 
 import bank.omnibank.api.dados.cartao.DadosAtualizacaoCartao;
+import bank.omnibank.api.dados.cartao.DadosAtualizacaoLimite;
 import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
 import bank.omnibank.api.dados.cartao.DadosListagemCartao;
 import bank.omnibank.api.dados.cliente.DadosListagemCliente;
@@ -27,4 +28,11 @@ public class CartaoService {
     public void alterarStatus(DadosAtualizacaoCartao dados) {
         cartaoDao.atualizarStatus(dados);
     }
+
+    public void atualizarLimite(DadosAtualizacaoLimite dados){
+        cartaoDao.atualizarLimite(dados);
+    }
+
+
 }
+

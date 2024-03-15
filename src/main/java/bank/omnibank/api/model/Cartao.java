@@ -1,6 +1,7 @@
 package bank.omnibank.api.model;
 
 import bank.omnibank.api.dados.cartao.DadosAtualizacaoCartao;
+import bank.omnibank.api.dados.cartao.DadosAtualizacaoLimite;
 import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
 import bank.omnibank.api.dados.cliente.DadosCadastroCliente;
 import jakarta.persistence.*;
@@ -112,5 +113,9 @@ public class Cartao {
         } else {
             this.ativo = true;
         }
+    }
+
+    public void atualizarLimite(DadosAtualizacaoLimite dados) {
+        this.limite = dados.limite();
     }
 }
