@@ -14,6 +14,6 @@ public record DadosListagemCliente(
         Boolean status) {
 
     public DadosListagemCliente(Cliente cliente) {
-        this(cliente.getId(),cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getTelefone(), cliente.isAtivo());
+        this(cliente.getId(),cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getTelefone(), cliente.getAtivo());
     }
 }

@@ -26,7 +26,7 @@ public class Cartao {
     private BigDecimal limite;
     @NotNull
     @Column(name = "status")
-    private boolean ativo;
+    private Boolean ativo;
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
@@ -69,11 +69,11 @@ public class Cartao {
         this.limite = limite;
     }
 
-    public boolean isAtivo() {
+    public Boolean getAtivo() {
         return ativo;
     }
 
-    public void setAtivo(boolean ativo) {
+    public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
 

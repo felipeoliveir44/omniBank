@@ -12,7 +12,7 @@ public record DadosListagemCartao(
         String dataValidade,
         Boolean status) {
     public DadosListagemCartao(Cartao cartao) {
-        this(cartao.getNumero(), cartao.getCliente().getNome(), cartao.getLimite(),cartao.getValidade(), cartao.isAtivo());
+        this(cartao.getNumero(), cartao.getCliente().getNome(), cartao.getLimite(),cartao.getValidade(), cartao.getAtivo());
     }
 
 }

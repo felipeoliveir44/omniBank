@@ -7,7 +7,7 @@ public record DadosAtualizacaoCartao(
         @NotNull
         Long id,
         Long idCliente,
-        boolean status) {
+        Boolean status) {
 
 
 }
