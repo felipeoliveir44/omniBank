@@ -1,6 +1,7 @@
 package bank.omnibank.api.controller;
 
 import bank.omnibank.api.dados.cartao.DadosAtualizacaoCartao;
+import bank.omnibank.api.dados.cartao.DadosAtualizacaoLimite;
 import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
 import bank.omnibank.api.dados.cartao.DadosListagemCartao;
 import bank.omnibank.api.service.CartaoService;
@@ -42,5 +43,13 @@ public class CartaoController {
     public ResponseEntity<DadosAtualizacaoCartao> alterarStatus(@RequestBody DadosAtualizacaoCartao dados) {
         service.alterarStatus(dados);
         return ResponseEntity.ok(dados);
+
+   }
+
+   @PutMapping("/atualizarLimite")
+    @Transactional
+    public ResponseEntity<DadosAtualizacaoLimite> atualizarLimite(@RequestBody DadosAtualizacaoLimite dados){
+        service.atualizarLimite(dados);
+        return  ResponseEntity.ok(dados);
    }
 }

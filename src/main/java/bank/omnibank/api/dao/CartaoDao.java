@@ -1,6 +1,7 @@
 package bank.omnibank.api.dao;
 
 import bank.omnibank.api.dados.cartao.DadosAtualizacaoCartao;
+import bank.omnibank.api.dados.cartao.DadosAtualizacaoLimite;
 import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
 import bank.omnibank.api.dados.cartao.DadosListagemCartao;
 import bank.omnibank.api.dados.cliente.DadosAtualizacaoCliente;
@@ -39,5 +40,10 @@ public class CartaoDao {
     public void atualizarStatus(@RequestBody DadosAtualizacaoCartao dados) {
         var cartao = repository.getReferenceById(dados.id());
         cartao.alterarStatus(dados);
+    }
+
+    public void atualizarLimite(@RequestBody DadosAtualizacaoLimite dados) {
+        var cartao = repository.getReferenceById(dados.id());
+        cartao.atualizarLimite(dados);
     }
 }
