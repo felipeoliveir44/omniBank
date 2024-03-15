@@ -20,7 +20,7 @@ BEGIN -- Início
     -- Calcular validade do cartão (4 anos e 6 meses à frente)
     SET validadeCartao = DATE_FORMAT(DATE_ADD(DATE_ADD(NOW(), INTERVAL 4 YEAR), INTERVAL 6 MONTH), '%m/%Y');
 
-insert into tbcartao (numero, validade, cvv, limite, statusCartao, id_cliente) values (numeroCartao, validadeCartao, cvvCartao, plimite, 'Ativo', pidCliente);
+insert into tbcartao (numero, validade, cvv, limite, status, id_cliente) values (numeroCartao, validadeCartao, cvvCartao, plimite, 1, pidCliente);
 END $$
 
 DELIMITER ;
