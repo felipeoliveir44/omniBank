@@ -21,5 +21,6 @@ public interface CartaoRepository extends JpaRepository<Cartao, Long> {
 
     Page<Cartao> findAllByAtivoTrue(Pageable paginacao);
 
-    Cartao findAll(Long idCliente, Long idCartao, boolean status);
+
+    Cartao findAllById(Long idCartao);
 }

@@ -3,6 +3,7 @@ package bank.omnibank.api.dao;
 import bank.omnibank.api.dados.cartao.DadosAtualizacaoCartao;
 import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
 import bank.omnibank.api.dados.cartao.DadosListagemCartao;
+import bank.omnibank.api.dados.cliente.DadosAtualizacaoCliente;
 import bank.omnibank.api.dados.cliente.DadosListagemCliente;
 import bank.omnibank.api.model.Cartao;
 import bank.omnibank.api.repository.CartaoRepository;
@@ -35,8 +36,8 @@ public class CartaoDao {
         return repository.findAllByAtivoTrue(paginacao).map(DadosListagemCartao::new);
     }
 
-    public void atualizarStatus(@RequestBody @Valid DadosAtualizacaoCartao dados) {
-        var cartao = repository.findAll(dados.idCliente(), dados.idCartao(), dados.status());
+    public void atualizarStatus(@RequestBody DadosAtualizacaoCartao dados) {
+        var cartao = repository.getReferenceById(dados.id());
         cartao.alterarStatus(dados);
     }
 }
