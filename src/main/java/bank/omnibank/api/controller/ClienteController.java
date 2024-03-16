@@ -34,9 +34,8 @@ public class ClienteController {
     }
 
     @GetMapping("/listar")
-    public Page<DadosListagemCliente> listarClientes(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
-
-        return service.listarClientes(paginacao);
+    public Page<DadosListagemCliente> listarClientes(@RequestBody @PageableDefault(size = 10, sort = {"id"}) DadosListagemCliente dados, Pageable paginacao) {
+        return service.listarClientes(dados, paginacao);
     }
 
     @PutMapping("/atualizar")
