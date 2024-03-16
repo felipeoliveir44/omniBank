@@ -6,6 +6,7 @@ import bank.omnibank.api.model.Cliente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
@@ -21,6 +22,6 @@ public interface CartaoRepository extends JpaRepository<Cartao, Long> {
 
     Page<Cartao> findAllByAtivoTrue(Pageable paginacao);
 
-
-    Cartao findAllById(Long idCartao);
+    @Query(value = "select * from tbcartao where id = 1", nativeQuery = true)
+    Cartao cartao();
 }

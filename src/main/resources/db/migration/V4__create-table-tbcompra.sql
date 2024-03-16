@@ -3,7 +3,7 @@ CREATE TABLE tbcompra (
 
     id bigint PRIMARY KEY auto_increment not null,
     valor DECIMAL(10, 2) not null,
-    dataCompra DATETIME not null,
+    data_compra DATETIME not null,
     estabelecimento VARCHAR(100) not null,
     categoria VARCHAR(50) not null,
     id_cartao bigint not null,

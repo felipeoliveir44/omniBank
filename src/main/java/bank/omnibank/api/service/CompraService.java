@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CompraService {
     @Autowired
-    CompraDao compraDao;
+    private CompraDao compraDao;
     public void cadastroCompra(DadosCadastroCompra dadosCadastroCompra) {
         compraDao.cadastrarCompra(dadosCadastroCompra);
-
-
     }
 }
