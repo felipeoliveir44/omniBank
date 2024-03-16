@@ -24,8 +24,12 @@ public class ClienteService {
         clienteDao.cadastrarClientes(cliente);
     }
 
-    public Page<DadosListagemCliente> listarClientes(DadosListagemCliente dados, Pageable paginacao) {
-        return clienteDao.listarClientes(dados, paginacao);
+    public Page<DadosListagemCliente> listarClientes(Pageable paginacao) {
+        return clienteDao.listarClientes(paginacao);
+    }
+
+    public Page<DadosListagemCliente> listarClientesCpf(String cpf, Pageable paginacao) {
+        return clienteDao.listarClientesCpf(cpf, paginacao);
     }
 
     public void atualizarCliente(DadosAtualizacaoCliente dados) {

@@ -32,13 +32,13 @@ public class ClienteDao {
 
     public void cadastrarClientes(@RequestBody @Valid DadosCadastroCliente cliente) {
         repository.spCadastrarCliente(cliente.nome(), cliente.cpf(), cliente.email(), cliente.telefone());
-        // repository.cadastrarClienteProcedure(cliente.nome(), cliente.cpf(), cliente.email(), cliente.telefone());
-        // repository.save(new Cliente(cliente));
     }
 
-
-    public Page<DadosListagemCliente> listarClientes(@RequestBody @PageableDefault(size = 10, sort = {"id"}) DadosListagemCliente dados, Pageable paginacao) {
-        return repository.findAllByCpfAndAtivoTrue(dados.cpf(), paginacao).map(DadosListagemCliente::new);
+    public Page<DadosListagemCliente> listarClientes( @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemCliente::new);
+    }
+    public Page<DadosListagemCliente> listarClientesCpf( @PageableDefault(size = 10, sort = {"id"}) @PathVariable String cpf, Pageable paginacao) {
+        return repository.findAllByCpfAndAtivoTrue(cpf, paginacao).map(DadosListagemCliente::new);
     }
 
     public void atualizarCliente(@RequestBody DadosAtualizacaoCliente dados) {
