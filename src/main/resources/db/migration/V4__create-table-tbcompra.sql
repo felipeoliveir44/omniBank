@@ -1,7 +1,7 @@
 
 CREATE TABLE tbcompra (
 
-    id bigint PRIMARY KEY not null,
+    id bigint PRIMARY KEY auto_increment not null,
     valor DECIMAL(10, 2) not null,
     dataCompra DATETIME not null,
     estabelecimento VARCHAR(100) not null,

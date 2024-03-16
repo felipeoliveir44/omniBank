@@ -1,38 +1,38 @@
 package bank.omnibank.api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import bank.omnibank.api.dados.compra.DadosCadastroCompra;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Locale;
+
 @Entity
+@Table(name = "tbcompra")
 public class Compra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    private String cartao;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cartao")
+    private Cartao cartao;
 
     @NotBlank
-    private double valor;
+    private BigDecimal valor;
     @NotBlank
-    private String categoria;
+    @JoinColumn(name = "id_categoria")
+    private Categoria categoria;
 
     @NotBlank
     private  String estabelecimento;
 
-    public Compra() {
+    private LocalDate dataCompra;
 
-    }
-    public Compra(String cartao, double valor, String categoria, String estabelecimento) {
-        this.cartao = cartao;
-        this.valor = valor;
-        categoria = categoria;
-        this.estabelecimento = estabelecimento;
-    }
+
 
     public Long getId() {
         return id;
@@ -42,27 +42,27 @@ public class Compra {
         this.id = id;
     }
 
-    public String getCartao() {
+    public Cartao getCartao() {
         return cartao;
     }
 
-    public void setCartao(String cartao) {
+    public void setCartao(Cartao cartao) {
         this.cartao = cartao;
     }
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 

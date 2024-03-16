@@ -32,6 +32,7 @@ public class Cartao {
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
+    private Compra compra;
 
     public Long getId() {
         return id;
