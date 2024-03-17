@@ -6,6 +6,7 @@ import bank.omnibank.api.model.Cliente;
 import bank.omnibank.api.model.Compra;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -13,6 +14,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface CompraRepository extends JpaRepository <Compra,Long > {
@@ -38,4 +40,7 @@ public interface CompraRepository extends JpaRepository <Compra,Long > {
                                                                             @Param("ano") int ano,
                                                                             @Param("mes") int mes);
 
+    List<Compra> findByIdIsNotNullAndDataCompraBetween(Date inicio, Date fim, Sort sort);
+
+    List<Compra> findByIdIsNull(Sort sort);
 }

@@ -3,6 +3,7 @@ package bank.omnibank.api.model;
 import bank.omnibank.api.dados.cliente.DadosCadastroCliente;
 import bank.omnibank.api.dados.compra.DadosCadastroCompra;
 import bank.omnibank.api.repository.CategoriaRepository;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import jakarta.persistence.*;
@@ -15,6 +16,7 @@ import org.springframework.cglib.core.Local;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Locale;
 
 @Entity
@@ -49,13 +51,26 @@ public class Compra {
     @JoinColumn(name = "id_categoria")
     private Categoria categoriaId;
 
-    public Compra(DadosCadastroCompra dados, Cartao cartao, Categoria categoria) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date inicio;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date fim;
+
+    public Compra(DadosCadastroCompra dados, Cartao cartao, Categoria categoria, Cliente cliente) {
         this.valor = dados.valor();
         this.dataCompra = dados.dataCompra();
         this.estabelecimento = dados.estabelecimento();
         this.categoria = dados.categoria();
         this.cartao = cartao;
         this.categoriaId = categoria;
+        this.cliente = cliente;
+    }
+
+    public Compra(DadosCadastroCompra dados, Cartao cartao, Categoria categoria) {
     }
 
     public BigDecimal getValor() {
