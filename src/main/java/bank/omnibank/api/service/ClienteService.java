@@ -28,6 +28,10 @@ public class ClienteService {
         return clienteDao.listarClientes(paginacao);
     }
 
+    public Page<DadosListagemCliente> listarClientesCpf(String cpf, Pageable paginacao) {
+        return clienteDao.listarClientesCpf(cpf, paginacao);
+    }
+
     public void atualizarCliente(DadosAtualizacaoCliente dados) {
         clienteDao.atualizarCliente(dados);
     }

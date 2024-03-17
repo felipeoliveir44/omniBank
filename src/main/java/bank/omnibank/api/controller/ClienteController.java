@@ -34,9 +34,12 @@ public class ClienteController {
     }
 
     @GetMapping("/listar")
-    public Page<DadosListagemCliente> listarClientes(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
-
+    public Page<DadosListagemCliente> listarClientes( @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
         return service.listarClientes(paginacao);
+    }
+    @GetMapping("/listar/{cpf}")
+    public Page<DadosListagemCliente> listarClientesCpf( @PageableDefault(size = 10, sort = {"id"}) @PathVariable String cpf, Pageable paginacao) {
+        return service.listarClientesCpf(cpf, paginacao);
     }
 
     @PutMapping("/atualizar")
