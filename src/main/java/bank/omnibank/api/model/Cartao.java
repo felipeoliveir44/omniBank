@@ -2,8 +2,6 @@ package bank.omnibank.api.model;
 
 import bank.omnibank.api.dados.cartao.DadosAtualizacaoCartao;
 import bank.omnibank.api.dados.cartao.DadosAtualizacaoLimite;
-import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
-import bank.omnibank.api.dados.cliente.DadosCadastroCliente;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -17,15 +15,12 @@ public class Cartao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     private String numero;
-    @NotBlank
     private String validade;
-    @NotBlank
     private String cvv;
-    @NotNull
+
     private BigDecimal limite;
-    @NotNull
+
     @Column(name = "status")
     private Boolean ativo;
     @ManyToOne
@@ -36,8 +31,6 @@ public class Cartao {
     public Long getId() {
         return id;
     }
-
-
     public String getNumero() {
         return numero;
     }

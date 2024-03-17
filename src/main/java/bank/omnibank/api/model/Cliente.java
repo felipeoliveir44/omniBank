@@ -17,17 +17,17 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-    @NotBlank
+
     private String nome;
-    @NotBlank
+
     private String cpf;
-    @NotBlank
-    @Email
+
+
     private String email;
-    @NotBlank
+
     private String telefone;
 
-    @NotNull
+
     @Column(name = "status")
     private Boolean ativo;
 
