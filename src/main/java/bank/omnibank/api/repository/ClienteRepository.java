@@ -24,9 +24,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
             @Param("email") String email,
             @Param("telefone") String telefone
     );
-
-
-
 }
 
 

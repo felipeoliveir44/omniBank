@@ -4,6 +4,7 @@ import bank.omnibank.api.dados.compra.DadosListagemGastosCategoria;
 import bank.omnibank.api.model.Cartao;
 import bank.omnibank.api.model.Cliente;
 import bank.omnibank.api.model.Compra;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -28,19 +29,11 @@ public interface CompraRepository extends JpaRepository <Compra,Long > {
             @Param("pIdCartao") Long idCartao
     );
 
-    @Query("SELECT c.nome AS nomeCategoria, SUM(co.valor) AS totalGasto " +
-            "FROM Compra co " +
-            "JOIN co.categoriaId c " +
-            "WHERE co.cartao.id = :idCartao " +
-            "AND YEAR(co.dataCompra) = :ano " +
-            "AND MONTH(co.dataCompra) = :mes " +
-            "GROUP BY c.nome " +
-            "ORDER BY c.nome")
-            List<Object[]> somarGastosPorCategoriaNoMes(@Param("idCartao") Long cartaoId,
-                                                                            @Param("ano") int ano,
-                                                                            @Param("mes") int mes);
 
-    List<Compra> findByIdIsNotNullAndDataCompraBetween(Date inicio, Date fim, Sort sort);
+
+    List<Compra> findByIdIsNotNullAndDataCompraBetween(LocalDate inicio, LocalDate fim, Sort sort);
 
     List<Compra> findByIdIsNull(Sort sort);
+
+
 }

@@ -17,9 +17,4 @@ public class CompraService {
     public void cadastroCompra(DadosCadastroCompra dadosCadastroCompra) {
         compraDao.cadastrarCompra(dadosCadastroCompra);
     }
-
-    public List<Object[]> somarGastosPorCategoriaNoMes(Long cartaoId, int ano, int mes) {
-        return compraDao.somarGastosPorCategoriaNoMes(cartaoId, ano, mes);
-    }
-
 }

@@ -54,11 +54,6 @@ public class Compra {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date inicio;
-
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fim;
 
     public Compra(DadosCadastroCompra dados, Cartao cartao, Categoria categoria, Cliente cliente) {
         this.valor = dados.valor();

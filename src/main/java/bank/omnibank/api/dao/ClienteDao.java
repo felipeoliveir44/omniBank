@@ -34,6 +34,7 @@ public class ClienteDao {
         repository.spCadastrarCliente(cliente.nome(), cliente.cpf(), cliente.email(), cliente.telefone());
     }
 
+
     public Page<DadosListagemCliente> listarClientes( @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
         return repository.findAllByAtivoTrue(paginacao).map(DadosListagemCliente::new);
     }
