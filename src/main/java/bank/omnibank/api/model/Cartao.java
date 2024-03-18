@@ -29,8 +29,6 @@ public class Cartao {
     private Cliente cliente;
 
 
-//    @OneToMany(mappedBy = "cliente")
-//    private List<Compra> compras;
 
 
     public Long getId() {

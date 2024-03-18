@@ -35,10 +35,10 @@ public class ClienteDao {
     }
 
 
-    public Page<DadosListagemCliente> listarClientes( @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+    public Page<DadosListagemCliente> listarClientes(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
         return repository.findAllByAtivoTrue(paginacao).map(DadosListagemCliente::new);
     }
-    public Page<DadosListagemCliente> listarClientesCpf( @PageableDefault(size = 10, sort = {"id"}) @PathVariable String cpf, Pageable paginacao) {
+    public Page<DadosListagemCliente> listarClientesCpf(@PageableDefault(size = 10, sort = {"id"}) @PathVariable String cpf, Pageable paginacao) {
         return repository.findAllByCpfAndAtivoTrue(cpf, paginacao).map(DadosListagemCliente::new);
     }
 

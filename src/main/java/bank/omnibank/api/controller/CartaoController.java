@@ -14,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/cartoes")
@@ -34,24 +36,38 @@ public class CartaoController {
 
     @GetMapping("/listar")
     @Transactional
-   public Page<DadosListagemCartao> listarCartao(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+    public Page<DadosListagemCartao> listarCartao(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
         return service.listarCartao(paginacao);
 
-   }
+    }
 
-   @PutMapping("/atualizarStatus")
-   @Transactional
+    @PutMapping("/atualizarStatus")
+    @Transactional
     public ResponseEntity<DadosAtualizacaoCartao> alterarStatus(@RequestBody DadosAtualizacaoCartao dados) {
         service.alterarStatus(dados);
         return ResponseEntity.ok(dados);
 
-   }
+    }
 
-   @PutMapping("/atualizarLimite")
+    @PutMapping("/atualizarLimite")
     @Transactional
-    public ResponseEntity<DadosAtualizacaoLimite> atualizarLimite(@RequestBody DadosAtualizacaoLimite dados){
+    public ResponseEntity<DadosAtualizacaoLimite> atualizarLimite(@RequestBody DadosAtualizacaoLimite dados) {
         service.atualizarLimite(dados);
-        return  ResponseEntity.ok(dados);
+        return ResponseEntity.ok(dados);
 
-   }
+    }
+
+    @PostMapping("/visualizarFatura")
+    @Transactional
+    public ResponseEntity<List<Object[]>> visualizarFatura(@RequestBody Map<String, Object> requestBody) {
+        String numeroCartao = requestBody.get("numeroCartao").toString();
+        LocalDate dataCompra = LocalDate.parse(requestBody.get("dataCompra").toString());
+        List<Object[]> visualizarFatura = service.visualizarFatura(numeroCartao, dataCompra);
+        if (visualizarFatura != null && !visualizarFatura.isEmpty()) {
+            return ResponseEntity.ok(visualizarFatura);
+        } else {
+            return ResponseEntity.noContent().build(); // Retornar status 204 se a lista estiver vazia
+        }
+
+    }
 }
