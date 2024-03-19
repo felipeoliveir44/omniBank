@@ -48,8 +48,8 @@ public class CartaoDao {
         cartao.atualizarLimite(dados);
     }
 
-    public List<Object[]> visualizarFatura(String numeroCartao, LocalDate dataCompra) {
-        return repository.visualizarFatura(numeroCartao, dataCompra);
+    public List<Object[]> visualizarFatura(String numeroCartao, int anoCompra, int mesCompra) {
+        return repository.visualizarFatura(numeroCartao, anoCompra, mesCompra);
     }
 
 }

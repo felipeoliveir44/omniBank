@@ -36,8 +36,8 @@ public class CartaoService {
         cartaoDao.atualizarLimite(dados);
     }
 
-    public List<Object[]> visualizarFatura(String numeroCartao, LocalDate dataCompra) {
-        return cartaoDao.visualizarFatura(numeroCartao, dataCompra);
+    public List<Object[]> visualizarFatura(String numeroCartao, int anoCompra, int mesCompra) {
+        return cartaoDao.visualizarFatura(numeroCartao, anoCompra, mesCompra);
     }
 
 

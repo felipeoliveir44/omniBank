@@ -61,8 +61,9 @@ public class CartaoController {
     @Transactional
     public ResponseEntity<List<Object[]>> visualizarFatura(@RequestBody Map<String, Object> requestBody) {
         String numeroCartao = requestBody.get("numeroCartao").toString();
-        LocalDate dataCompra = LocalDate.parse(requestBody.get("dataCompra").toString());
-        List<Object[]> visualizarFatura = service.visualizarFatura(numeroCartao, dataCompra);
+        int anoCompra = Integer.parseInt(requestBody.get("anoCompra").toString());
+        int mesCompra = Integer.parseInt(requestBody.get("mesCompra").toString());
+        List<Object[]> visualizarFatura = service.visualizarFatura(numeroCartao, anoCompra, mesCompra);
         if (visualizarFatura != null && !visualizarFatura.isEmpty()) {
             return ResponseEntity.ok(visualizarFatura);
         } else {
