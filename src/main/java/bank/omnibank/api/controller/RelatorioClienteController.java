@@ -4,6 +4,7 @@ import bank.omnibank.api.model.Compra;
 import bank.omnibank.api.service.RelatorioClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,8 @@ public class RelatorioClienteController {
     }
 
     @GetMapping("/mais-compras")
-    public ResponseEntity<List<Compra>> clientesComMaisCompras(@RequestBody LocalDate inicio, LocalDate fim) {
+    public ResponseEntity<List<Compra>> clientesComMaisCompras(@RequestParam("inicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+                                                               @RequestParam("fim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
         List<Compra> clientes = relatorioClienteService.clientesComMaisCompras(inicio, fim);
         return ResponseEntity.ok(clientes);
     }
