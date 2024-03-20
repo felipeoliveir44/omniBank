@@ -11,6 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 public class CartaoService {
 
@@ -32,6 +35,11 @@ public class CartaoService {
     public void atualizarLimite(DadosAtualizacaoLimite dados){
         cartaoDao.atualizarLimite(dados);
     }
+
+    public List<Object[]> visualizarFatura(String numeroCartao, int anoCompra, int mesCompra) {
+        return cartaoDao.visualizarFatura(numeroCartao, anoCompra, mesCompra);
+    }
+
 
 
 }

@@ -21,6 +21,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Repository
@@ -46,4 +47,9 @@ public class CartaoDao {
         var cartao = repository.getReferenceById(dados.id());
         cartao.atualizarLimite(dados);
     }
+
+    public List<Object[]> visualizarFatura(String numeroCartao, int anoCompra, int mesCompra) {
+        return repository.visualizarFatura(numeroCartao, anoCompra, mesCompra);
+    }
+
 }

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,9 @@ public class ClienteController {
 
     @PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<DadosCadastroCliente> cadastrarClientes(@RequestBody @Valid DadosCadastroCliente cliente) {
+    public ResponseEntity<DadosCadastroCliente> cadastrarClientes(@RequestBody @Valid DadosCadastroCliente cliente, BindingResult result) {
+        if(result.hasFieldErrors()) return ResponseEntity.badRequest().body(null);
+
         service.cadastrarCliente(cliente);
         return ResponseEntity.ok(cliente);
     }
