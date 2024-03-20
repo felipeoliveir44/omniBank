@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "tbcartao")
@@ -26,6 +27,10 @@ public class Cartao {
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
+
+
+//    @OneToMany(mappedBy = "cliente")
+//    private List<Compra> compras;
 
 
     public Long getId() {

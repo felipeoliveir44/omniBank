@@ -3,6 +3,7 @@ package bank.omnibank.api.model;
 import bank.omnibank.api.dados.cliente.DadosCadastroCliente;
 import bank.omnibank.api.dados.compra.DadosCadastroCompra;
 import bank.omnibank.api.repository.CategoriaRepository;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import jakarta.persistence.*;
@@ -15,6 +16,7 @@ import org.springframework.cglib.core.Local;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Locale;
 
 @Entity
@@ -48,6 +50,7 @@ public class Compra {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_categoria")
     private Categoria categoriaId;
+
 
     public Compra(DadosCadastroCompra dados, Cartao cartao, Categoria categoria) {
         this.valor = dados.valor();

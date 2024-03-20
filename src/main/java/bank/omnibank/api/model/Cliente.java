@@ -8,6 +8,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tbcliente")
 @NoArgsConstructor
@@ -26,7 +28,6 @@ public class Cliente {
     private String email;
 
     private String telefone;
-
 
     @Column(name = "status")
     private Boolean ativo;
