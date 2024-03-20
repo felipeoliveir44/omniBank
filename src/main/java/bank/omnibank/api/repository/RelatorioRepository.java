@@ -1,6 +1,7 @@
 package bank.omnibank.api.repository;
 
 import bank.omnibank.api.model.Compra;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -29,6 +30,13 @@ public interface RelatorioRepository extends JpaRepository<Compra, Long> {
             "ORDER BY c.valor DESC")
     List<Object[]> comprasMaiorValor(@Param("dataInicial") LocalDate inicio,
                                      @Param("dataFinal") LocalDate fim);
+
+    @Query("SELECT c.nome FROM Cartao ca " +
+            "LEFT JOIN Cliente c ON ca.cliente.id = c.id " +
+            "LEFT JOIN Compra co ON ca.id = co.cartao.id " +
+            "WHERE co.id IS NULL")
+    List<Object[]> clientesSemCompras(@Param("inicio") LocalDate inicio,
+                                     @Param("fim") LocalDate fim);
 
 
 }

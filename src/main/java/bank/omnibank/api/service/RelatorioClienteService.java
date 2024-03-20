@@ -23,10 +23,10 @@ public class RelatorioClienteService {
         return compraRepository.findByIdIsNotNullAndDataCompraBetween(inicio, fim, Sort.by("nome"));
     }
 
-    public List<Compra> clientesSemCompras() {
-        return compraRepository.findByIdIsNull(Sort.by("nome"));
-    }
+    public List<Object[]> clientesSemCompras(LocalDate inicio, LocalDate fim) {
+        return relatorioRepository.clientesSemCompras(inicio, fim);
 
+    }
 
     public List<Object[]> comprasMaiorValor(LocalDate inicio, LocalDate fim) {
         return relatorioRepository.comprasMaiorValor(inicio, fim);
@@ -35,6 +35,7 @@ public class RelatorioClienteService {
     public List<Object[]> somarGastosPorCategoriaNoMes(Long cartaoId, int ano, int mes) {
         return relatorioRepository.somarGastosPorCategoriaNoMes(cartaoId, ano, mes);
     }
+
 
 
 }
