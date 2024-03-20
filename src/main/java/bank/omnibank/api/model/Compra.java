@@ -51,21 +51,14 @@ public class Compra {
     @JoinColumn(name = "id_categoria")
     private Categoria categoriaId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
 
-    public Compra(DadosCadastroCompra dados, Cartao cartao, Categoria categoria, Cliente cliente) {
+    public Compra(DadosCadastroCompra dados, Cartao cartao, Categoria categoria) {
         this.valor = dados.valor();
         this.dataCompra = dados.dataCompra();
         this.estabelecimento = dados.estabelecimento();
         this.categoria = dados.categoria();
         this.cartao = cartao;
         this.categoriaId = categoria;
-        this.cliente = cliente;
-    }
-
-    public Compra(DadosCadastroCompra dados, Cartao cartao, Categoria categoria) {
     }
 
     public BigDecimal getValor() {

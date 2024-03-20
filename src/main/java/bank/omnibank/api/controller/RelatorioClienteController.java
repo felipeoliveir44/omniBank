@@ -38,18 +38,18 @@ public class RelatorioClienteController {
         return ResponseEntity.ok(clientes);
     }
 
-    @PostMapping("/maiorValor")
-    @Transactional
-    public ResponseEntity<List<Object[]>> comprasMaiorValor(@RequestBody Map<String, Object> requestBody) {
-        LocalDate inicio = LocalDate.parse(requestBody.get("inicio").toString());
-        LocalDate fim = LocalDate.parse(requestBody.get("fim").toString());
-        List<Object[]> comprasMaiorValor = relatorioClienteService.comprasMaiorValor(inicio, fim);
-        if (comprasMaiorValor != null && !comprasMaiorValor.isEmpty()) {
-            return ResponseEntity.ok(comprasMaiorValor);
-        } else {
-            return ResponseEntity.noContent().build(); // Retornar status 204 se a lista estiver vazia
+        @PostMapping("/maiorValor")
+        @Transactional
+        public ResponseEntity<List<Object[]>> comprasMaiorValor(@RequestBody Map<String, Object> requestBody) {
+            LocalDate inicio = LocalDate.parse(requestBody.get("inicio").toString());
+            LocalDate fim = LocalDate.parse(requestBody.get("fim").toString());
+            List<Object[]> comprasMaiorValor = relatorioClienteService.comprasMaiorValor(inicio, fim);
+            if (comprasMaiorValor != null && !comprasMaiorValor.isEmpty()) {
+                return ResponseEntity.ok(comprasMaiorValor);
+            } else {
+                return ResponseEntity.noContent().build(); // Retornar status 204 se a lista estiver vazia
+            }
         }
-    }
 
 }
 
