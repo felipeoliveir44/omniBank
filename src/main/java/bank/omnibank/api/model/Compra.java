@@ -61,7 +61,6 @@ public class Compra {
         this.categoriaId = categoria;
     }
 
-
     public BigDecimal getValor() {
         return valor;
     }
