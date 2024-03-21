@@ -29,7 +29,8 @@ public class CompraDao {
 
     public void cadastrarCompra(@RequestBody DadosCadastroCompra dados) {
         Cartao cartao = cartaoRepository.getReferenceById(dados.cartaoId());
-        compraRepository.save(new Compra(dados, cartao));
+        Categoria categoria = categoriaRepository.getReferenceById(dados.categoriaId());
+        compraRepository.save(new Compra(dados, cartao, categoria));
     }
 
 }
