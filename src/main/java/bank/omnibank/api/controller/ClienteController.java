@@ -20,12 +20,12 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/cliente")
 public class ClienteController {
 
     @Autowired
     private ClienteService service;
-
 
     @PostMapping("/cadastrar")
     @Transactional
