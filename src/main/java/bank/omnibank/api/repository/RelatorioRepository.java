@@ -27,14 +27,15 @@ public interface RelatorioRepository extends JpaRepository<Compra, Long> {
             "FROM Compra c " +
             "WHERE c.id IS NOT NULL " +
             "AND c.dataCompra BETWEEN :dataInicial AND :dataFinal " +
-            "ORDER BY c.valor DESC")
+            "ORDER BY c.cartao.cliente.nome ASC")
     List<Object[]> comprasMaiorValor(@Param("dataInicial") LocalDate inicio,
                                      @Param("dataFinal") LocalDate fim);
 
     @Query("SELECT c.nome FROM Cartao ca " +
             "LEFT JOIN Cliente c ON ca.cliente.id = c.id " +
             "LEFT JOIN Compra co ON ca.id = co.cartao.id " +
-            "WHERE co.id IS NULL")
+            "WHERE co.id IS NULL " +
+            "ORDER BY c.nome ASC")
     List<Object[]> clientesSemCompras(@Param("inicio") LocalDate inicio,
                                      @Param("fim") LocalDate fim);
 

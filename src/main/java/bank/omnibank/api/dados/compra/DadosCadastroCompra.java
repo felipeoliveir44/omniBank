@@ -17,11 +17,10 @@ public record DadosCadastroCompra(
         LocalDate dataCompra,
         String estabelecimento,
         String categoria,
-        Long cartaoId,
-        Long categoriaId
+        Long cartaoId
 
 ) {
     public DadosCadastroCompra(DadosCadastroCompra dados) {
-        this(dados.valor(), dados.dataCompra(), dados.estabelecimento(), dados.categoria(), dados.cartaoId(), dados.categoriaId());
+        this(dados.valor(), dados.dataCompra(), dados.estabelecimento(), dados.categoria(), dados.cartaoId());
     }
 }
