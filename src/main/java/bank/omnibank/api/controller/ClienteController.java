@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/cliente")
+@CrossOrigin("*")
 public class ClienteController {
 
     @Autowired
