@@ -43,11 +43,11 @@ public class Compra {
     @Column(name = "categoria")
     private String categoria;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_cartao")
     private Cartao cartao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_categoria")
     private Categoria categoriaId;
 
@@ -59,6 +59,9 @@ public class Compra {
         this.categoria = dados.categoria();
         this.cartao = cartao;
         this.categoriaId = categoria;
+    }
+
+    public Compra() {
     }
 
     public BigDecimal getValor() {

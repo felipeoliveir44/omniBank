@@ -20,7 +20,7 @@ public class RelatorioClienteService {
     private RelatorioRepository relatorioRepository;
 
     public List<Compra> clientesComMaisCompras(LocalDate inicio, LocalDate fim) {
-        return compraRepository.findByIdIsNotNullAndDataCompraBetween(inicio, fim, Sort.by("nome"));
+        return compraRepository.findByIdIsNotNullAndDataCompraBetween(inicio, fim, Sort.by("id"));
     }
 
     public List<Object[]> clientesSemCompras(LocalDate inicio, LocalDate fim) {
@@ -35,8 +35,5 @@ public class RelatorioClienteService {
     public List<Object[]> somarGastosPorCategoriaNoMes(Long cartaoId, int ano, int mes) {
         return relatorioRepository.somarGastosPorCategoriaNoMes(cartaoId, ano, mes);
     }
-
-
-
 }
 
