@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,21 +21,23 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/cliente")
+@CrossOrigin("*")
 public class ClienteController {
 
     @Autowired
     private ClienteService service;
 
-
     @PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<DadosCadastroCliente> cadastrarClientes(@RequestBody @Valid DadosCadastroCliente cliente) {
+    public ResponseEntity<DadosCadastroCliente> cadastrarClientes(@RequestBody @Valid DadosCadastroCliente cliente, BindingResult result) {
+        if(result.hasFieldErrors()) return ResponseEntity.badRequest().body(null);
+
         service.cadastrarCliente(cliente);
         return ResponseEntity.ok(cliente);
     }
 
     @GetMapping("/listar")
-    public Page<DadosListagemCliente> listarClientes( @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+    public Page<DadosListagemCliente> listarClientes( @PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
         return service.listarClientes(paginacao);
     }
     @GetMapping("/listar/{cpf}")
