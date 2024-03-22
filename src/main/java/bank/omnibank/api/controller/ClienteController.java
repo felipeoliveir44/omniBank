@@ -21,11 +21,11 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/cliente")
+@CrossOrigin("*")
 public class ClienteController {
 
     @Autowired
     private ClienteService service;
-
 
     @PostMapping("/cadastrar")
     @Transactional
