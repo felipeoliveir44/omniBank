@@ -56,7 +56,6 @@ public class CartaoController {
     public ResponseEntity<DadosAtualizacaoCartao> alterarStatus(@RequestBody DadosAtualizacaoCartao dados) {
         service.alterarStatus(dados);
         return ResponseEntity.ok(dados);
-
     }
 
     @PutMapping("/atualizarLimite")

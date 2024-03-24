@@ -36,7 +36,6 @@ public interface CartaoRepository extends JpaRepository<Cartao, Long> {
             "AND FUNCTION('MONTH', co.dataCompra) = :mesCompra " +
             "GROUP BY c.numero, cl.nome, cl.cpf, co.dataCompra, co.estabelecimento, co.categoria " +
             "ORDER BY co.dataCompra ASC")
-
     List<Object[]> visualizarFatura (@Param("numeroCartao") String numeroCartao,
                                      @Param("anoCompra") int anoCompra,
                                      @Param("mesCompra") int mesCompra);
