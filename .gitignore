@@ -36,3 +36,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+FETCH_HEAD
+.idea
+mvnw
+mvnw.cmd
+.mvn

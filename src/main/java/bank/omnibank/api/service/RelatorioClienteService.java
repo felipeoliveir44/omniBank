@@ -4,6 +4,7 @@ import bank.omnibank.api.model.Compra;
 import bank.omnibank.api.repository.CompraRepository;
 import bank.omnibank.api.repository.RelatorioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +33,8 @@ public class RelatorioClienteService {
         return relatorioRepository.comprasMaiorValor(inicio, fim);
     }
 
-    public List<Object[]> somarGastosPorCategoriaNoMes(Long cartaoId, int ano, int mes) {
-        return relatorioRepository.somarGastosPorCategoriaNoMes(cartaoId, ano, mes);
+    public List<Object[]> somarGastosPorCategoriaNoMes(Long cartaoId, LocalDate dataInicial, LocalDate dataFinal) {
+        return relatorioRepository.somarGastosPorCategoriaNoMes(cartaoId, dataInicial, dataFinal);
     }
 }
 

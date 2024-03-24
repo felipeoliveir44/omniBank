@@ -13,15 +13,14 @@ public interface RelatorioRepository extends JpaRepository<Compra, Long> {
 
     @Query("SELECT c.nome AS nomeCategoria, SUM(co.valor) AS totalGasto " +
             "FROM Compra co " +
-            "JOIN co.categoriaId c " +
+            "JOIN Categoria c ON co.categoriaId.id = c.id " +
             "WHERE co.cartao.id = :idCartao " +
-            "AND YEAR(co.dataCompra) = :ano " +
-            "AND MONTH(co.dataCompra) = :mes " +
+            "AND co.dataCompra BETWEEN :dataInicial AND :dataFinal " +
             "GROUP BY c.nome " +
             "ORDER BY c.nome")
     List<Object[]> somarGastosPorCategoriaNoMes(@Param("idCartao") Long cartaoId,
-                                                @Param("ano") int ano,
-                                                @Param("mes") int mes);
+                                                @Param("dataInicial") LocalDate dataInicial,
+                                                @Param("dataFinal") LocalDate dataFinal);
 
     @Query("SELECT c.nome AS nome_cliente, MAX(co.valor) AS maior_valor_compra " +
             "FROM Cartao ca " +

@@ -22,12 +22,11 @@ public class RelatorioClienteController {
 
     @PostMapping("/gastosCategoria")
     @Transactional
-    public ResponseEntity<List<Object[]>> listarCompras(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<List<Object[]>> gastosCategoria(@RequestBody Map<String, Object> requestBody) {
         Long idCartao = Long.parseLong(requestBody.get("idCartao").toString());
-        int ano = Integer.parseInt(requestBody.get("ano").toString());
-        int mes = Integer.parseInt(requestBody.get("mes").toString());
-
-        List<Object[]> listaGastos = relatorioClienteService.somarGastosPorCategoriaNoMes(idCartao, ano, mes);
+        LocalDate inicio = LocalDate.parse(requestBody.get("dataInicial").toString());
+        LocalDate fim = LocalDate.parse(requestBody.get("dataFinal").toString());
+        List<Object[]> listaGastos = relatorioClienteService.somarGastosPorCategoriaNoMes(idCartao, inicio, fim);
         if (listaGastos != null && !listaGastos.isEmpty()) {
             return ResponseEntity.ok(listaGastos);
         } else {
