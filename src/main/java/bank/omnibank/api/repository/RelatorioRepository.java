@@ -23,11 +23,14 @@ public interface RelatorioRepository extends JpaRepository<Compra, Long> {
                                                 @Param("ano") int ano,
                                                 @Param("mes") int mes);
 
-    @Query("SELECT c.id, c.cartao.cliente.nome, c.categoriaId.nome , c.dataCompra, c.estabelecimento, c.valor " +
-            "FROM Compra c " +
-            "WHERE c.id IS NOT NULL " +
-            "AND c.dataCompra BETWEEN :dataInicial AND :dataFinal " +
-            "ORDER BY c.cartao.cliente.nome ASC")
+    @Query("SELECT c.nome AS nome_cliente, MAX(co.valor) AS maior_valor_compra " +
+            "FROM Cartao ca " +
+            "JOIN ca.cliente c " +
+            "JOIN Compra co " +
+            "ON c.id = ca.cliente.id AND ca.id = co.cartao.id " +
+            "WHERE co.dataCompra BETWEEN :dataInicial AND :dataFinal " +
+            "GROUP BY c.id, c.nome " +
+            "ORDER BY maior_valor_compra DESC")
     List<Object[]> comprasMaiorValor(@Param("dataInicial") LocalDate inicio,
                                      @Param("dataFinal") LocalDate fim);
 
@@ -39,5 +42,14 @@ public interface RelatorioRepository extends JpaRepository<Compra, Long> {
     List<Object[]> clientesSemCompras(@Param("inicio") LocalDate inicio,
                                      @Param("fim") LocalDate fim);
 
-
+    @Query("SELECT c.nome AS nome_cliente, COUNT(co.id) AS quantidade_compras " +
+            "FROM Cartao ca " +
+            "LEFT JOIN ca.cliente c " +
+            "LEFT JOIN Compra co ON ca.id = co.cartao.id " + // Adicionando a condição de junção
+            "WHERE co.dataCompra BETWEEN :inicio AND :fim " +
+            "GROUP BY c.id, c.nome " +
+            "ORDER BY quantidade_compras DESC")
+    List<Object[]> buscarQuantidadeCompras(
+            @Param("inicio") LocalDate inicio,
+            @Param("fim") LocalDate fim);
 }

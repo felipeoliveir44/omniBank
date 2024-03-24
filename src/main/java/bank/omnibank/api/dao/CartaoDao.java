@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.math.BigDecimal;
@@ -35,7 +36,7 @@ public class CartaoDao {
     }
 
     public Page<DadosListagemCartao> listarCartao(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
-        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemCartao::new);
+        return repository.findAll(paginacao).map(DadosListagemCartao::new);
     }
 
     public void atualizarStatus(@RequestBody DadosAtualizacaoCartao dados) {
@@ -52,4 +53,11 @@ public class CartaoDao {
         return repository.visualizarFatura(numeroCartao, anoCompra, mesCompra);
     }
 
+    public Page<Cartao> listarCartaoCpf(@PathVariable String cpf, @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+        return repository.encontrarPeloCpf(cpf, paginacao);
+    }
+
+    public Page<Cartao> listarCartaoNumero(@PathVariable String numeroCartao, Pageable paginacao) {
+        return repository.encontrarPeloNumeroCartao(numeroCartao, paginacao);
+    }
 }

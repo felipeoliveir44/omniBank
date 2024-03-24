@@ -4,6 +4,7 @@ import bank.omnibank.api.dados.cartao.DadosAtualizacaoCartao;
 import bank.omnibank.api.dados.cartao.DadosAtualizacaoLimite;
 import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
 import bank.omnibank.api.dados.cartao.DadosListagemCartao;
+import bank.omnibank.api.model.Cartao;
 import bank.omnibank.api.service.CartaoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,18 @@ public class CartaoController {
     }
 
     @GetMapping("/listar")
-    @Transactional
     public Page<DadosListagemCartao> listarCartao(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
         return service.listarCartao(paginacao);
+    }
 
+    @GetMapping("/listar/cpf/{cpf}")
+    public Page<Cartao> listarCartaoCpf(@PathVariable("cpf") String cpf, @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+      return service.listarCartaoCpf(cpf, paginacao);
+    }
+
+    @GetMapping("/listar/numero/{numeroCartao}")
+    public Page<Cartao> listarCartaoNumero(@PathVariable("numeroCartao") String numeroCartao, @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+        return service.listarCartaoNumero(numeroCartao, paginacao);
     }
 
     @PutMapping("/atualizarStatus")
@@ -57,6 +66,7 @@ public class CartaoController {
         return ResponseEntity.ok(dados);
 
     }
+
 
     @PostMapping("/visualizarFatura")
     @Transactional

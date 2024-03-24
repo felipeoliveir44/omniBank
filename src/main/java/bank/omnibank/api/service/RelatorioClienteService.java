@@ -19,8 +19,8 @@ public class RelatorioClienteService {
     @Autowired
     private RelatorioRepository relatorioRepository;
 
-    public List<Compra> clientesComMaisCompras(LocalDate inicio, LocalDate fim) {
-        return compraRepository.findByIdIsNotNullAndDataCompraBetween(inicio, fim, Sort.by("id"));
+    public List<Object[]> clientesComMaisCompras(LocalDate inicio, LocalDate fim) {
+        return relatorioRepository.buscarQuantidadeCompras(inicio, fim);
     }
 
     public List<Object[]> clientesSemCompras(LocalDate inicio, LocalDate fim) {

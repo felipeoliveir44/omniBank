@@ -6,6 +6,7 @@ import bank.omnibank.api.model.Categoria;
 import bank.omnibank.api.model.Compra;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import jakarta.validation.constraints.Null;
 import org.springframework.cglib.core.Local;
 
 import java.math.BigDecimal;
@@ -14,14 +15,12 @@ import java.time.LocalDateTime;
 
 public record DadosCadastroCompra(
         BigDecimal valor,
-        LocalDate dataCompra,
         String estabelecimento,
         String categoria,
-        Long cartaoId,
-        Long categoriaId
+        Long idCartao
 
 ) {
     public DadosCadastroCompra(DadosCadastroCompra dados) {
-        this(dados.valor(), dados.dataCompra(), dados.estabelecimento(), dados.categoria(), dados.cartaoId(), dados.categoriaId());
+        this(dados.valor(), dados.estabelecimento(), dados.categoria(), dados.idCartao());
     }
 }

@@ -6,6 +6,7 @@ import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
 import bank.omnibank.api.dados.cartao.DadosListagemCartao;
 import bank.omnibank.api.dados.cliente.DadosListagemCliente;
 import bank.omnibank.api.dao.CartaoDao;
+import bank.omnibank.api.model.Cartao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,10 @@ public class CartaoService {
         return cartaoDao.listarCartao(paginacao);
     }
 
+    public Page<Cartao> listarCartaoCpf(String cpf, Pageable paginacao) {
+        return cartaoDao.listarCartaoCpf(cpf, paginacao);
+    }
+
     public void alterarStatus(DadosAtualizacaoCartao dados) {
         cartaoDao.atualizarStatus(dados);
     }
@@ -41,6 +46,8 @@ public class CartaoService {
     }
 
 
-
+    public Page<Cartao> listarCartaoNumero(String numeroCartao, Pageable paginacao) {
+        return cartaoDao.listarCartaoNumero(numeroCartao, paginacao);
+    }
 }
 

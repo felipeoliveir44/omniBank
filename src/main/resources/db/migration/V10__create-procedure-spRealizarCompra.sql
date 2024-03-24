@@ -15,7 +15,7 @@ BEGIN -- Início
     select id into @idCategoria from tbcategoria where nome = pCategoria;
 
 
-    insert  into tbcompra(valor, dataCompra, estabelecimento, categoria, id_cartao, id_categoria) values (pValor, now(), pEstabelecimento, pCategoria, pIdCartao, @idCategoria);
+    insert  into tbcompra(valor, data_compra, estabelecimento, categoria, id_cartao, id_categoria) values (pValor, pDataCompra, pEstabelecimento, pCategoria, pIdCartao, @idCategoria);
 END $$
 
 DELIMITER ;

@@ -22,7 +22,9 @@ public class CompraController {
    @PostMapping("/cadastrar")
    @Transactional
    public ResponseEntity<DadosCadastroCompra> cadastroCompra(@RequestBody DadosCadastroCompra compra) {
+       System.out.println(compra);
        service.cadastroCompra(compra);
+
        return ResponseEntity.ok(compra);
    }
 

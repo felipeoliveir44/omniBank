@@ -29,8 +29,6 @@ public interface CompraRepository extends JpaRepository <Compra,Long > {
             @Param("pIdCartao") Long idCartao
     );
 
-
-
     List<Compra> findByIdIsNotNullAndDataCompraBetween(LocalDate inicio, LocalDate fim, Sort sort);
 
     List<Compra> findByIdIsNull(Sort sort);

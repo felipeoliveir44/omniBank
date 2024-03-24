@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 public record DadosAtualizacaoCartao(
         @NotNull
         Long id,
-        Long idCliente,
         Boolean status) {
 
 

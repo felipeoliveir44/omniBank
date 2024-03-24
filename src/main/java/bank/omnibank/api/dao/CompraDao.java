@@ -9,11 +9,13 @@ import bank.omnibank.api.repository.CategoriaRepository;
 import bank.omnibank.api.repository.CompraRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class CompraDao {
@@ -28,9 +30,7 @@ public class CompraDao {
 
 
     public void cadastrarCompra(@RequestBody DadosCadastroCompra dados) {
-        Cartao cartao = cartaoRepository.getReferenceById(dados.cartaoId());
-        Categoria categoria = categoriaRepository.getReferenceById(dados.categoriaId());
-        compraRepository.save(new Compra(dados, cartao, categoria));
+        compraRepository.spRealizarCompra(dados.valor(), LocalDate.now(),dados.categoria(),dados.estabelecimento(), dados.idCartao());
     }
 
 }

@@ -36,9 +36,11 @@ public class RelatorioClienteController {
     }
 
     @GetMapping("/mais-compras")
-    public ResponseEntity<List<Compra>> clientesComMaisCompras(@RequestParam("inicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
-                                                               @RequestParam("fim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
-        List<Compra> clientes = relatorioClienteService.clientesComMaisCompras(inicio, fim);
+    public ResponseEntity<List<Object[]>> clientesComMaisCompras(@RequestParam("inicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+                                                                 @RequestParam("fim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
+        System.out.println(inicio);
+        System.out.println(fim);
+        List<Object[]> clientes = relatorioClienteService.clientesComMaisCompras(inicio, fim);
         return ResponseEntity.ok(clientes);
     }
 

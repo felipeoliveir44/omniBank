@@ -52,13 +52,12 @@ public class Compra {
     private Categoria categoriaId;
 
 
-    public Compra(DadosCadastroCompra dados, Cartao cartao, Categoria categoria) {
+    public Compra(DadosCadastroCompra dados) {
         this.valor = dados.valor();
-        this.dataCompra = dados.dataCompra();
+        this.dataCompra = LocalDate.now();
         this.estabelecimento = dados.estabelecimento();
         this.categoria = dados.categoria();
-        this.cartao = cartao;
-        this.categoriaId = categoria;
+        this.cartao = getCartao();
     }
 
     public Compra() {
