@@ -1,5 +1,9 @@
 package bank.omnibank.api.service;
 
+import bank.omnibank.api.dados.relatorio.DadosListagemBuscarQuantidadeCompras;
+import bank.omnibank.api.dados.relatorio.DadosListagemClientesSemCompras;
+import bank.omnibank.api.dados.relatorio.DadosListagemComprasMaiorValor;
+import bank.omnibank.api.dados.relatorio.DadosListagemGastoCategoria;
 import bank.omnibank.api.model.Compra;
 import bank.omnibank.api.repository.CompraRepository;
 import bank.omnibank.api.repository.RelatorioRepository;
@@ -20,20 +24,20 @@ public class RelatorioClienteService {
     @Autowired
     private RelatorioRepository relatorioRepository;
 
-    public List<Object[]> clientesComMaisCompras(LocalDate inicio, LocalDate fim) {
+    public List<DadosListagemBuscarQuantidadeCompras> clientesComMaisCompras(LocalDate inicio, LocalDate fim) {
         return relatorioRepository.buscarQuantidadeCompras(inicio, fim);
     }
 
-    public List<Object[]> clientesSemCompras(LocalDate inicio, LocalDate fim) {
+    public List<DadosListagemClientesSemCompras> clientesSemCompras(LocalDate inicio, LocalDate fim) {
         return relatorioRepository.clientesSemCompras(inicio, fim);
 
     }
 
-    public List<Object[]> comprasMaiorValor(LocalDate inicio, LocalDate fim) {
+    public List<DadosListagemComprasMaiorValor> comprasMaiorValor(LocalDate inicio, LocalDate fim) {
         return relatorioRepository.comprasMaiorValor(inicio, fim);
     }
 
-    public List<Object[]> somarGastosPorCategoriaNoMes(Long cartaoId, LocalDate dataInicial, LocalDate dataFinal) {
+    public List<DadosListagemGastoCategoria> somarGastosPorCategoriaNoMes(Long cartaoId, LocalDate dataInicial, LocalDate dataFinal) {
         return relatorioRepository.somarGastosPorCategoriaNoMes(cartaoId, dataInicial, dataFinal);
     }
 }

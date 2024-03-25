@@ -27,10 +27,6 @@ public class Cartao {
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
-
-
-
-
     public Long getId() {
         return id;
     }

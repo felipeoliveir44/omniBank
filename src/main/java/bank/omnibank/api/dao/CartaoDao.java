@@ -1,15 +1,13 @@
 package bank.omnibank.api.dao;
 
-import bank.omnibank.api.dados.cartao.DadosAtualizacaoCartao;
-import bank.omnibank.api.dados.cartao.DadosAtualizacaoLimite;
-import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
-import bank.omnibank.api.dados.cartao.DadosListagemCartao;
+import bank.omnibank.api.dados.cartao.*;
 import bank.omnibank.api.dados.cliente.DadosAtualizacaoCliente;
 import bank.omnibank.api.dados.cliente.DadosListagemCliente;
 import bank.omnibank.api.model.Cartao;
 import bank.omnibank.api.repository.CartaoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -49,15 +47,15 @@ public class CartaoDao {
         cartao.atualizarLimite(dados);
     }
 
-    public List<Object[]> visualizarFatura(String numeroCartao, int anoCompra, int mesCompra) {
-        return repository.visualizarFatura(numeroCartao, anoCompra, mesCompra);
+    public List<DadosVisualizarFatura> visualizarFatura(String numeroCartao, LocalDate dataInicio, LocalDate dataFinal) {
+        return repository.visualizarFatura(numeroCartao, dataInicio, dataFinal);
     }
 
-    public Page<Cartao> listarCartaoCpf(@PathVariable String cpf, @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+    public Page<DadosEncontrarPeloCpf> listarCartaoCpf(@PathVariable String cpf, @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
         return repository.encontrarPeloCpf(cpf, paginacao);
     }
 
-    public Page<Cartao> listarCartaoNumero(@PathVariable String numeroCartao, Pageable paginacao) {
+    public Page<DadosEncontrarPeloNumeroCartao> listarCartaoNumero(@PathVariable String numeroCartao, Pageable paginacao) {
         return repository.encontrarPeloNumeroCartao(numeroCartao, paginacao);
     }
 }

@@ -1,9 +1,6 @@
 package bank.omnibank.api.service;
 
-import bank.omnibank.api.dados.cartao.DadosAtualizacaoCartao;
-import bank.omnibank.api.dados.cartao.DadosAtualizacaoLimite;
-import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
-import bank.omnibank.api.dados.cartao.DadosListagemCartao;
+import bank.omnibank.api.dados.cartao.*;
 import bank.omnibank.api.dados.cliente.DadosListagemCliente;
 import bank.omnibank.api.dao.CartaoDao;
 import bank.omnibank.api.model.Cartao;
@@ -29,7 +26,7 @@ public class CartaoService {
         return cartaoDao.listarCartao(paginacao);
     }
 
-    public Page<Cartao> listarCartaoCpf(String cpf, Pageable paginacao) {
+    public Page<DadosEncontrarPeloCpf> listarCartaoCpf(String cpf, Pageable paginacao) {
         return cartaoDao.listarCartaoCpf(cpf, paginacao);
     }
 
@@ -41,12 +38,12 @@ public class CartaoService {
         cartaoDao.atualizarLimite(dados);
     }
 
-    public List<Object[]> visualizarFatura(String numeroCartao, int anoCompra, int mesCompra) {
-        return cartaoDao.visualizarFatura(numeroCartao, anoCompra, mesCompra);
+    public List<DadosVisualizarFatura> visualizarFatura(String numeroCartao, LocalDate dataInicial, LocalDate dataFinal) {
+        return cartaoDao.visualizarFatura(numeroCartao, dataInicial, dataFinal);
     }
 
 
-    public Page<Cartao> listarCartaoNumero(String numeroCartao, Pageable paginacao) {
+    public Page<DadosEncontrarPeloNumeroCartao> listarCartaoNumero(String numeroCartao, Pageable paginacao) {
         return cartaoDao.listarCartaoNumero(numeroCartao, paginacao);
     }
 }

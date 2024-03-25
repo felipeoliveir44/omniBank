@@ -1,5 +1,9 @@
 package bank.omnibank.api.controller;
 
+import bank.omnibank.api.dados.relatorio.DadosListagemBuscarQuantidadeCompras;
+import bank.omnibank.api.dados.relatorio.DadosListagemClientesSemCompras;
+import bank.omnibank.api.dados.relatorio.DadosListagemComprasMaiorValor;
+import bank.omnibank.api.dados.relatorio.DadosListagemGastoCategoria;
 import bank.omnibank.api.model.Compra;
 import bank.omnibank.api.service.RelatorioClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +26,12 @@ public class RelatorioClienteController {
 
     @PostMapping("/gastosCategoria")
     @Transactional
-    public ResponseEntity<List<Object[]>> gastosCategoria(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<List<DadosListagemGastoCategoria>> gastosCategoria(@RequestBody Map<String, Object> requestBody) {
         Long idCartao = Long.parseLong(requestBody.get("idCartao").toString());
         LocalDate inicio = LocalDate.parse(requestBody.get("dataInicial").toString());
         LocalDate fim = LocalDate.parse(requestBody.get("dataFinal").toString());
-        List<Object[]> listaGastos = relatorioClienteService.somarGastosPorCategoriaNoMes(idCartao, inicio, fim);
+        List<DadosListagemGastoCategoria> listaGastos = relatorioClienteService.somarGastosPorCategoriaNoMes(idCartao, inicio, fim);
+        System.out.println(listaGastos);
         if (listaGastos != null && !listaGastos.isEmpty()) {
             return ResponseEntity.ok(listaGastos);
         } else {
@@ -35,20 +40,20 @@ public class RelatorioClienteController {
     }
 
     @GetMapping("/mais-compras")
-    public ResponseEntity<List<Object[]>> clientesComMaisCompras(@RequestParam("inicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
-                                                                 @RequestParam("fim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
+    public ResponseEntity<List<DadosListagemBuscarQuantidadeCompras>> clientesComMaisCompras(@RequestParam("inicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+                                                                                             @RequestParam("fim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
         System.out.println(inicio);
         System.out.println(fim);
-        List<Object[]> clientes = relatorioClienteService.clientesComMaisCompras(inicio, fim);
+        List<DadosListagemBuscarQuantidadeCompras> clientes = relatorioClienteService.clientesComMaisCompras(inicio, fim);
         return ResponseEntity.ok(clientes);
     }
 
     @PostMapping("/maiorValor")
     @Transactional
-    public ResponseEntity<List<Object[]>> comprasMaiorValor(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<List<DadosListagemComprasMaiorValor>> comprasMaiorValor(@RequestBody Map<String, Object> requestBody) {
         LocalDate inicio = LocalDate.parse(requestBody.get("inicio").toString());
         LocalDate fim = LocalDate.parse(requestBody.get("fim").toString());
-        List<Object[]> comprasMaiorValor = relatorioClienteService.comprasMaiorValor(inicio, fim);
+        List<DadosListagemComprasMaiorValor> comprasMaiorValor = relatorioClienteService.comprasMaiorValor(inicio, fim);
         if (comprasMaiorValor != null && !comprasMaiorValor.isEmpty()) {
             return ResponseEntity.ok(comprasMaiorValor);
         } else {
@@ -58,10 +63,10 @@ public class RelatorioClienteController {
 
     @PostMapping("/semCompras")
     @Transactional
-    public ResponseEntity<List<Object[]>> clientesSemCompras(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<List<DadosListagemClientesSemCompras>> clientesSemCompras(@RequestBody Map<String, Object> requestBody) {
         LocalDate inicio = LocalDate.parse(requestBody.get("inicio").toString());
         LocalDate fim = LocalDate.parse(requestBody.get("fim").toString());
-        List<Object[]> clientesSemCompras = relatorioClienteService.clientesSemCompras(inicio, fim);
+        List<DadosListagemClientesSemCompras> clientesSemCompras = relatorioClienteService.clientesSemCompras(inicio, fim);
         if (clientesSemCompras != null && !clientesSemCompras.isEmpty()) {
             return ResponseEntity.ok(clientesSemCompras);
         } else {

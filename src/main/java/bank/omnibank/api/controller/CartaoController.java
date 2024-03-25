@@ -1,9 +1,6 @@
 package bank.omnibank.api.controller;
 
-import bank.omnibank.api.dados.cartao.DadosAtualizacaoCartao;
-import bank.omnibank.api.dados.cartao.DadosAtualizacaoLimite;
-import bank.omnibank.api.dados.cartao.DadosCadastroCartao;
-import bank.omnibank.api.dados.cartao.DadosListagemCartao;
+import bank.omnibank.api.dados.cartao.*;
 import bank.omnibank.api.model.Cartao;
 import bank.omnibank.api.service.CartaoService;
 import jakarta.validation.Valid;
@@ -42,12 +39,12 @@ public class CartaoController {
     }
 
     @GetMapping("/listar/cpf/{cpf}")
-    public Page<Cartao> listarCartaoCpf(@PathVariable("cpf") String cpf, @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+    public Page<DadosEncontrarPeloCpf> listarCartaoCpf(@PathVariable("cpf") String cpf, @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
       return service.listarCartaoCpf(cpf, paginacao);
     }
 
     @GetMapping("/listar/numero/{numeroCartao}")
-    public Page<Cartao> listarCartaoNumero(@PathVariable("numeroCartao") String numeroCartao, @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+    public Page<DadosEncontrarPeloNumeroCartao> listarCartaoNumero(@PathVariable("numeroCartao") String numeroCartao, @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
         return service.listarCartaoNumero(numeroCartao, paginacao);
     }
 
@@ -69,11 +66,12 @@ public class CartaoController {
 
     @PostMapping("/visualizarFatura")
     @Transactional
-    public ResponseEntity<List<Object[]>> visualizarFatura(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<List<DadosVisualizarFatura>> visualizarFatura(@RequestBody Map<String, Object> requestBody) {
         String numeroCartao = requestBody.get("numeroCartao").toString();
-        int anoCompra = Integer.parseInt(requestBody.get("anoCompra").toString());
-        int mesCompra = Integer.parseInt(requestBody.get("mesCompra").toString());
-        List<Object[]> visualizarFatura = service.visualizarFatura(numeroCartao, anoCompra, mesCompra);
+        LocalDate inicio = LocalDate.parse(requestBody.get("dataInicial").toString());
+        LocalDate fim = LocalDate.parse(requestBody.get("dataFinal").toString());
+        List<DadosVisualizarFatura> visualizarFatura = service.visualizarFatura(numeroCartao, inicio, fim);
+        System.out.println(visualizarFatura);
         if (visualizarFatura != null && !visualizarFatura.isEmpty()) {
             return ResponseEntity.ok(visualizarFatura);
         } else {
