@@ -10,9 +10,10 @@ public record DadosListagemCliente(
         String nome,
         String cpf,
         String email,
-        String telefone) {
+        String telefone,
+        Boolean status) {
 
     public DadosListagemCliente(Cliente cliente) {
-        this(cliente.getId(),cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getTelefone());
+        this(cliente.getId(),cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getTelefone(), cliente.getAtivo());
     }
 }

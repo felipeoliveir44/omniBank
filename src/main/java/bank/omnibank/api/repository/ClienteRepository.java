@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
-    Page<Cliente> findAllByAtivoTrue(Pageable paginacao);
+    Page<Cliente> findAll(Pageable paginacao);
     Page<Cliente> findAllByCpfAndAtivoTrue(String cpf, Pageable paginacao);
 
     @Procedure(name = "spCadastrarCliente")

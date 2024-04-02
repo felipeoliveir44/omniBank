@@ -36,7 +36,7 @@ public class ClienteDao {
 
 
     public Page<DadosListagemCliente> listarClientes(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
-        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemCliente::new);
+        return repository.findAll(paginacao).map(DadosListagemCliente::new);
     }
     public Page<DadosListagemCliente> listarClientesCpf(@PageableDefault(size = 10, sort = {"id"}) @PathVariable String cpf, Pageable paginacao) {
         return repository.findAllByCpfAndAtivoTrue(cpf, paginacao).map(DadosListagemCliente::new);
