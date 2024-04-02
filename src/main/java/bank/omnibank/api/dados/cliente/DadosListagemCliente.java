@@ -13,6 +13,7 @@ public record DadosListagemCliente(
         String telefone,
         Boolean status) {
 
+
     public DadosListagemCliente(Cliente cliente) {
         this(cliente.getId(),cliente.getNome(), cliente.getCpf(), cliente.getEmail(), cliente.getTelefone(), cliente.getAtivo());
     }

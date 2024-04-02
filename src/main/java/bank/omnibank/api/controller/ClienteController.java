@@ -31,8 +31,6 @@ public class ClienteController {
     @Transactional
     public ResponseEntity<DadosCadastroCliente> cadastrarClientes(@RequestBody @Valid DadosCadastroCliente cliente, BindingResult result) {
         if(result.hasFieldErrors()) return ResponseEntity.badRequest().body(null);
-
-
         service.cadastrarCliente(cliente);
         return ResponseEntity.ok(cliente);
     }
@@ -49,7 +47,6 @@ public class ClienteController {
     @PutMapping("/atualizar")
     @Transactional
     public ResponseEntity<DadosAtualizacaoCliente> atualizarCliente(@RequestBody DadosAtualizacaoCliente dadosCliente) {
-
         service.atualizarCliente(dadosCliente);
         return ResponseEntity.ok(dadosCliente);
     }
