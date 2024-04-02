@@ -32,6 +32,7 @@ public class ClienteController {
     public ResponseEntity<DadosCadastroCliente> cadastrarClientes(@RequestBody @Valid DadosCadastroCliente cliente, BindingResult result) {
         if(result.hasFieldErrors()) return ResponseEntity.badRequest().body(null);
 
+
         service.cadastrarCliente(cliente);
         return ResponseEntity.ok(cliente);
     }
